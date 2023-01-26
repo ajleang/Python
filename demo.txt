@@ -1,0 +1,32 @@
+int PirSensor = 5; //signal 5
+int RedLED = 6; //signal 6
+int Piezo = 7; //signal 7
+
+void setup()
+{
+  
+ Serial.begin(9600); //ความเร็วการสื่อสาร 9600
+  
+ pinMode(PirSensor, INPUT); //ตั้งให้ Pir Sensor เป็นตัวรับ
+ pinMode(RedLED, OUTPUT);
+ pinMode(Piezo, OUTPUT);
+  
+}
+
+void loop()
+  
+{
+  
+  if(digitalRead(PirSensor) == HIGH)
+   { //ถ้าตรวจพบในระยะทำการของ Pir Sensor
+   digitalWrite(RedLED, HIGH); //ไฟจะเปิด
+    digitalWrite(Piezo, HIGH); //Piezoจะส่งเสียงเตือน
+    Serial.println("Someone come");
+   }
+   else{ //ถ้าตรวจไม่พบในระยะทำการของ Pir Sensor
+    digitalWrite(RedLED, LOW); //ไฟจะปิด
+    digitalWrite(Piezo, LOW); //Piezoจะไม่ส่งเสียงเตือน
+    Serial.println("Nothing found");
+   }
+  
+} //ขอบคุณค้าบ
